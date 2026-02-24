@@ -11,6 +11,7 @@ type User = {
 
 const FilterList = () => {
     const [filterList, setFilterList] = useState<User[]>([]);
+    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -21,11 +22,24 @@ const FilterList = () => {
     }, []);
 
     return (
-        <div className="filter-list">
-            {filterList.map((user)=>{
-                return <UserCard key={user.id} name={user.name} email={user.email} website={user.website} />
-            })}
+        <div>
+            <input 
+                type="text" 
+                className="filter-input" 
+                placeholder="Filter users by name" 
+                value={searchTerm} 
+                onChange={(e) => setSearchTerm(e.target.value)}
+            />
+
+            <button onClick={() => setFilterList(filterList.filter(user => user.name.toLowerCase().includes(searchTerm.toLowerCase())))}>Search</button>
+
+            <div className="filter-list">
+                {filterList.map((user) => {
+                    return <UserCard key={user.id} name={user.name} email={user.email} website={user.website} />
+                })}
+            </div>
         </div>
+       
     )
 }
 
