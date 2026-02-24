@@ -67,10 +67,27 @@ body {
 
 .filter-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
     gap: 21px;
     width: 100%;
+    /* justify-content: center;  */  /* Center the grid horizontally */
     justify-items: center;
     margin-top: 2rem;
+}
+
+.filter-input {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.filter-input-user{
+    width: 500px;
+    height: 1.5rem;
+    margin-right: 1rem;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 

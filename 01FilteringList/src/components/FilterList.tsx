@@ -23,16 +23,18 @@ const FilterList = () => {
 
     return (
         <div>
-            <input 
-                type="text" 
-                className="filter-input" 
-                placeholder="Filter users by name" 
-                value={searchTerm} 
-                onChange={(e) => setSearchTerm(e.target.value)}
-            />
+            <div className="filter-input">
+                <input
+                    type="text"
+                    className="filter-input-user"
+                    placeholder="Filter users by name"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
 
-            <button onClick={() => setFilterList(filterList.filter(user => user.name.toLowerCase().includes(searchTerm.toLowerCase())))}>Search</button>
-
+                <button onClick={() => setFilterList(filterList.filter(user => user.name.toLowerCase().includes(searchTerm.toLowerCase())))}>Search</button>
+            </div>
+            
             <div className="filter-list">
                 {filterList.map((user) => {
                     return <UserCard key={user.id} name={user.name} email={user.email} website={user.website} />

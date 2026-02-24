@@ -7,10 +7,10 @@ const Header = (props: Props) => {
   return (
     <div className="header">
       <p className="header-logo">{name}</p>
-      <div className="header-search">
+      {/* <div className="header-search">
           <input type="text" placeholder="Search for products, brands and more" className="header-search-input"/>
           <button className="header-search-button">Search</button>
-      </div>
+      </div> */}
       <div>
         <ul className="header-links">
           <li>Home</li>
