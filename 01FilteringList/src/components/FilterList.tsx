@@ -10,16 +10,30 @@ type User = {
 }
 
 const FilterList = () => {
+    const [filterOriginalList, setFilterOriginalList] = useState<User[]>([]);
     const [filterList, setFilterList] = useState<User[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
             const res = await axios.get("https://jsonplaceholder.typicode.com/users");
+            setFilterOriginalList(res.data);
             setFilterList(res.data);
         };
         fetchData();
     }, []);
+
+    const handleSearch = () => {
+        const filteredList = filterOriginalList.filter(user => user.name.toLowerCase().includes(searchTerm.toLowerCase()));
+        setFilterList(filteredList);
+    }
+
+    //-----------Core Concept of Filter Method------------
+
+    // const arr = [1, 2, 3, 4];
+    // const filtered = arr.filter(num => num > 2);
+    // console.log(arr);       // [1, 2, 3, 4]  ✅ unchanged
+    // console.log(filtered);  // [3, 4]        ✅ new array
 
     return (
         <div>
@@ -32,7 +46,7 @@ const FilterList = () => {
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
 
-                <button onClick={() => setFilterList(filterList.filter(user => user.name.toLowerCase().includes(searchTerm.toLowerCase())))}>Search</button>
+                <button onClick={() => handleSearch()}>Search</button>
             </div>
             
             <div className="filter-list">
